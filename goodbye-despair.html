@@ -1,0 +1,921 @@
+<!-- ----------------------- -->
+<!-- -   GOODBYE DESPAIR   - -->
+<!-- -        v 0.4        - -->
+<!-- -     by n-a-b.ml     - -->
+<!-- ----------------------- -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{Title}</title>
+        <style type="text/css">
+            html, body {
+                padding: 0;
+                margin: 0;
+                background: url("{HeaderImage}") center / cover no-repeat fixed;
+                font-family: Verdana;
+                font-size: 10px;
+            }
+            a {
+                color: {AccentColor};
+                text-decoration: none;
+            }
+            blockquote {
+                margin: 0;
+                margin-left: 6px;
+                padding: 3px;
+                padding-right: 0px;
+                border-left: 1px dashed rgba(255,255,255,0.25);
+            }
+            .tmblr-iframe {
+                left: 0 !important;
+            }
+            
+            /* POSTS */
+            .posts {
+                max-width: 500px;
+                margin: 0 auto;
+                margin-top: 150px;
+            }
+            .posts .post {
+                position: relative;
+                border-radius: 15px;
+                background-color: #333;
+                color: #efefef;
+                margin: 8px 0;
+                overflow: hidden;
+                border: 1px solid {AccentColor};
+                box-shadow: 0 1px 2px #000;
+                display: -ms-flex;
+                display: -webkit-flex;
+                display: flex;
+            }
+            .posts .post #left {
+                background-color: {AccentColor};
+                width: 20%;
+                flex: 1;
+            }
+            .posts .post #left #outer {
+                width: 25px;
+                height: 100%;
+                background-color: #cccccc;
+                float: right;
+                box-shadow: -2px 0 2px rgba(0,0,0,0.35),
+                    2px 0 2px rgba(0,0,0,0.35);
+            }
+            .posts .post #left #outer #inner {
+                width: 10px;
+                height: 100%;
+                background-color: #000000;
+                float: right;
+                box-shadow: -2px 0 2px rgba(0,0,0,0.35);
+            }
+            .posts .post #left #outer #inner #ininner {
+                width: 100%;
+                height: 100%;
+                background-color: rgba({RGBAccentColor}, 0.8);
+            }
+            .posts .post #right {
+                width: 80%;
+                height: 100%;
+                box-sizing: border-box;
+                padding: 4px;
+                float: right;
+            }
+            .posts .post #right #content {
+                padding: 3px 4px;
+                border-bottom: 1px dashed rgba(255,255,255,0.25);
+            }
+            .posts .post #right #content p {
+                padding: 0;
+                margin: 0;
+            }
+            .posts .post #right #content img {
+                width: 100%;
+                height: auto;
+            }
+			.post.audio .music-box {
+			    width: 75%;
+			    margin: 12px auto;
+				border: 1px solid {AccentColor};
+			    overflow: hidden;
+			}
+			.post.audio .audio-title {
+			    position: relative;
+                width: 100%;
+                height: 0;
+			}
+			.post.audio #media-player #blur {
+			    -webkit-filter: blur(5px);
+			    -moz-filter: blur(5px);
+			    -o-filter: blur(5px);
+			    -ms-filter: blur(5px);
+			    filter: blur(5px);
+			    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='5');
+			    position: absolute;
+			    width: 72px;
+			    height: 72px;
+			    left: 50%;
+			    top: 50%;
+			    transform: translate(-50%, -50%);
+			    background: url("http://static.tumblr.com/hax6owt/7Guo7wh3e/album-art.png") transparent no-repeat center center/286.8px 286.8px;
+			    color: transparent;
+			    overflow: hidden;
+			    z-index: 100;
+			    border-radius: 100%;
+			}
+			.post.audio .audio-title #blur {
+			    -webkit-filter: blur(5px);
+			    -moz-filter: blur(5px);
+			    -o-filter: blur(5px);
+			    -ms-filter: blur(5px);
+			    filter: blur(5px);
+			    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='5');
+			    position: absolute;
+			    width: 100%;
+			    padding: 12px 0;
+			    background: url("http://static.tumblr.com/hax6owt/7Guo7wh3e/album-art.png") transparent no-repeat top center/cover;
+			    color: transparent;
+			    overflow: hidden;
+			    z-index: 100;
+			}
+			.post.audio .audio-title #title {
+			    position: absolute;
+			    width: 100%;
+			    padding: 12px 0;
+			    background-color: rgba({RGBBackgroundColor}, 0.75);
+			    color: {TitleColor};
+			    z-index: 101;
+			    text-align: center;
+			}
+			.post.audio #media {
+			    width: 100%;
+			    height: auto;
+			}
+			.post.audio #media iframe {
+			    width: 100%;
+			    height: 100%;
+			}
+			.post.audio #media-player {
+			    width: 100%;
+			    height: 0;
+			    position: relative;
+			    padding-bottom: 100%;
+			    background: url("http://static.tumblr.com/hax6owt/7Guo7wh3e/album-art.png") no-repeat center center/cover;
+			}
+			.post.audio #media-player #album-art {
+			    position: absolute;
+			    pointer-events: none;
+			    width: 100%;
+			    height: 100%;
+			    top: 0;
+			    left: 0;
+			    z-index: 99;
+			}
+			.post.audio #media-player iframe {
+			    width: 70px;
+			    height: 70px;
+			    overflow: hidden;
+			    border-radius: 100%;
+			    box-shadow: 1px 1px 0 rgba(0,0,0,0.75);
+			    border: 1px solid rgba(0,0,0,0.65);
+			    opacity: 0.75;
+			    position: absolute;
+			    top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                transition: all .2s ease;
+			    z-index: 100;
+			}
+			.post.audio #media-player iframe:hover {
+			    opacity: 0.9;
+			}
+            .posts .post #date-button, .posts .post #notes-button, .posts .post #tag-button {
+                border-radius: 4px;
+                background-color: {AccentColor};
+                color: #333;
+                padding: 3px 4px;
+                margin: 3px 4px;
+                box-sizing: border-box;
+                display: inline-block;
+            }
+            .posts .post #notes-button, .posts .post #tag-button {
+                background-color: #656565;
+                color: #efefef;
+            }
+            .posts .post #notes-button:hover, .posts .post #tag-button:hover {
+                background-color: rgba(101,101,101,0.65);
+            }
+            .post .like {
+                position: relative;
+                top: 4px;
+                left: 3px;
+                text-align: left;
+                display: inline-block;
+                cursor: pointer;
+            }
+            .post .like svg path {
+                fill: #efefef;
+                cursor: pointer;
+				transition: all .2s ease;
+            }
+            .post .like:hover svg path {
+                fill: rgba(239, 239, 239, 0.75);
+            }
+            .post .like .like_button {
+                position: absolute;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                display: inline-block;
+                cursor: pointer;
+				transition: opacity .2s ease;
+            }
+            .post .like .like_button.liked {
+                opacity: 1;
+                cursor: pointer;
+            }
+            .post .reblog_button {
+                left: 8px;
+                display: inline-block !important;
+                position: relative;
+                top: 4px;
+            }
+            .post .reblog_button svg {
+                fill: #efefef;
+				transition: all .2s ease;
+            }
+            .post .reblog_button:hover svg {
+                fill: rgba(239, 239, 239, 0.75);
+            }
+            .posts .pagination {
+                text-align: center;
+                width: 100%;
+                font-size: 14px;
+                margin-bottom: 16px;
+            }
+            .posts .pagination a {
+                background-color: #333;
+                padding: 4px 3px;
+            }
+            .posts .pagination #currentPage {
+                background-color: {AccentColor};
+                color: #333;
+                padding: 4px 3px;
+            }
+            .posts .pagination .pcell:first-of-type {
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
+            }
+            .posts .pagination .pcell:last-of-type {
+                border-top-right-radius: 4px;
+                border-bottom-right-radius: 4px;
+            }
+            
+            /* LEFT OVERLAY */
+            .overlay {
+                position: fixed;
+                width: 100%;
+                height: 100%;
+            }
+            .overlay #left {
+                height: 90px;
+                width: 100vh;
+                position: fixed;
+                bottom: -45px;
+                left: 45px;
+                transform: rotate(-90deg);
+                transform-origin: left;
+                -ms-transform: rotate(-90deg);
+                -webkit-transform: rotate(-90deg);
+                background-color: {AccentColor};
+                background: -moz-linear-gradient(right, rgba(0,0,0,0) 10%, rgba({RGBAccentColor},1) 35%);
+                background: -webkit-linear-gradient(right, rgba(0,0,0,0) 10%, rgba({RGBAccentColor},1) 35%);
+                background: linear-gradient(to left, rgba(0,0,0,0) 10%, rgba({RGBAccentColor},1) 35%);
+            }
+            .overlay #triangle {
+                background-color: {AccentColor};
+                width: 400px;
+                height: 400px;
+                position: fixed;
+                top: -235px;
+                left: -235px;
+                box-shadow: 2px 0px 2px rgba(0,0,0,0.35);
+                transform: rotate(45deg);
+                -ms-transform: rotate(45deg);
+                -webkit-transform: rotate(45deg);
+                z-index: 1;
+            }
+            .overlay #guitar {
+                z-index: 100;
+                width: 80px;
+                height: 190px;
+                position: fixed;
+                top: 15px;
+                left: 8px;
+            }
+            .overlay #guitar path {
+                stroke: {AccentColor};
+                stroke-width: 10px;
+            }
+            .overlay #left #blog-title {
+                font-size: 32px;
+                position: relative;
+                top: 25px;
+                width: 75vh;
+                font-family: Verdana;
+                text-align: center;
+                color: #333;
+                text-shadow: -1px 0 0 rgba(0,0,0,0.35),
+                    1px 0 0 rgba(0,0,0,0.35),
+                    0 -1px 0 rgba(0,0,0,0.35),
+                    0 1px 0 rgba(0,0,0,0.35);
+            }
+            .overlay #left #outer {
+                width: 100%;
+                height: 25px;
+                position: fixed;
+                bottom: 0;
+                background-color: #cccccc;
+                box-shadow: 0 -2px 2px rgba(0,0,0,0.35),
+                    0 2px 2px rgba(0,0,0,0.35);
+            }
+            .overlay #left #outer #inner {
+                width: 100%;
+                height: 10px;
+                position: fixed;
+                bottom: 0;
+                background-color: #000;
+                float: right;
+                box-shadow: 0 -2px 2px rgba(0,0,0,0.35);
+            }
+            .overlay #left #outer #inner #ininner {
+                width: 100%;
+                height: 10px;
+                background-color: rgba({RGBAccentColor}, 0.8);
+                float: right;
+            }
+            
+            /* RIGHT OVERLAY */
+            .overlay #right .dangly-bits {
+                width: 150px;
+                position: fixed;
+                top: 20px;
+                right: 150px;
+                filter: drop-shadow(0 0 2px #000);
+            }
+            .overlay #right .dangly-bits #chapter, .overlay #right .dangly-bits #time, .overlay #right .dangly-bits #level {
+                display: inline-block;
+                background: #cccccc;
+                position: relative;
+                width: 100%;
+                padding: 5px;
+                font-size: 12px;
+                box-sizing: border-box;
+                max-height: 20px;
+                line-height: 10px;
+                text-align: right;
+                float: right;
+            }
+            .overlay #right .dangly-bits #chapter:before, .overlay #right .dangly-bits #time:before, .overlay #right .dangly-bits #level:before {
+                content: "\A";
+                border-style: solid;
+                border-width: 0px 20px 20px 0;
+                border-color: transparent #cccccc transparent transparent;
+                position: absolute;
+                left: -20px;
+                top: 0px;
+            }
+            .overlay #right .dangly-bits #chapter:after, .overlay #right .dangly-bits #time:after, .overlay #right .dangly-bits #level:after {
+                content: "\A";
+                position: absolute;
+                width: 50px;
+                background: #cccccc;
+                height: 20px;
+                top: 0px;
+            }
+            .overlay #right .dangly-bits #chapter {
+                font-weight: bold;
+            }
+            .overlay #right .dangly-bits #chapter #page {
+                color: #f84117;
+            }
+            .overlay #right .dangly-bits #time {
+                width: 86.8%;
+                background-color: {AccentColor};
+            }
+            .overlay #right .dangly-bits #time:before {
+                border-color: transparent {AccentColor} transparent transparent;
+            }
+            .overlay #right .dangly-bits #time:after {
+                background-color: {AccentColor};
+            }
+            .overlay #right .dangly-bits #level {
+                width: 73.6%;
+                background-color: #333333;
+                color: #efefef;
+            }
+            .overlay #right .dangly-bits #level:before {
+                border-color: transparent #333333 transparent transparent;
+            }
+            .overlay #right .dangly-bits #level:after {
+                background-color: #333333;
+            }
+            .overlay #right #daytime-circle {
+                border-radius: 100%;
+                background-color: #333;
+                border: 2px solid {AccentColor};
+                width: 125px;
+                height: 125px;
+                float: right;
+                position: fixed;
+                top: -5px;
+                right: -5px;
+                box-shadow: 0 0 2px #000;
+                overflow: hidden;
+                text-align: center;
+            }
+            .overlay #right #daytime-circle #time-gif {
+                width: 85px;
+                height: 85px;
+                margin: 0 auto;
+                margin-top: 20px;
+            }
+            .overlay #right #ani-border {
+                width: 185px;
+                height: 185px;
+                position: fixed;
+                right: -33px;
+                top: -33px;
+                filter: drop-shadow(0 0 2px #000);
+                animation: borderAnimation 36s linear infinite;
+            }
+            .overlay #right #ani-border path {
+                fill: {AccentColor};
+                stroke: #000;
+            }
+            
+            /* ANIMATIONS */
+            @keyframes borderAnimation {
+                0.5% {
+                    transform: rotate(12deg);
+                }
+                1% {
+                    transform: rotate(9deg);
+                }
+                2.5% {
+                    transform: rotate(9deg);
+                }
+                3% {
+                    transform: rotate(21deg);
+                }
+                3.5% {
+                    transform: rotate(18deg);
+                }
+                5% {
+                    transform: rotate(18deg);
+                }
+                5.5% {
+                    transform: rotate(30deg);
+                }
+                6% {
+                    transform: rotate(27deg);
+                }
+                7.5% {
+                    transform: rotate(27deg);
+                }
+                8% {
+                    transform: rotate(39deg);
+                }
+                8.5% {
+                    transform: rotate(36deg);
+                }
+                10% {
+                    transform: rotate(36deg);
+                }
+                10.5% {
+                    transform: rotate(48deg);
+                }
+                11% {
+                    transform: rotate(45deg);
+                }
+                12.5% {
+                    transform: rotate(45deg);
+                }
+                13% {
+                    transform: rotate(57deg);
+                }
+                13.5% {
+                    transform: rotate(54deg);
+                }
+                15% {
+                    transform: rotate(54deg);
+                }
+                15.5% {
+                    transform: rotate(66deg);
+                }
+                16% {
+                    transform: rotate(63deg);
+                }
+                17.5% {
+                    transform: rotate(63deg);
+                }
+                18% {
+                    transform: rotate(75deg);
+                }
+                18.5% {
+                    transform: rotate(72deg);
+                }
+                20% {
+                    transform: rotate(72deg);
+                }
+                20.5% {
+                    transform: rotate(84deg);
+                }
+                21% {
+                    transform: rotate(81deg);
+                }
+                22.5% {
+                    transform: rotate(81deg);
+                }
+                23% {
+                    transform: rotate(93deg);
+                }
+                23.5% {
+                    transform: rotate(90deg);
+                }
+                25% {
+                    transform: rotate(90deg);
+                }
+                25.5% {
+                    transform: rotate(102deg);
+                }
+                26% {
+                    transform: rotate(99deg);
+                }
+                27.5% {
+                    transform: rotate(99deg);
+                }
+                28% {
+                    transform: rotate(111deg);
+                }
+                28.5% {
+                    transform: rotate(108deg);
+                }
+                30% {
+                    transform: rotate(108deg);
+                }
+                30.5% {
+                    transform: rotate(120deg);
+                }
+                31% {
+                    transform: rotate(117deg);
+                }
+                32.5% {
+                    transform: rotate(117deg);
+                }
+                33% {
+                    transform: rotate(129deg);
+                }
+                33.5% {
+                    transform: rotate(126deg);
+                }
+                35% {
+                    transform: rotate(126deg);
+                }
+                35.5% {
+                    transform: rotate(138deg);
+                }
+                36% {
+                    transform: rotate(135deg);
+                }
+                37.5% {
+                    transform: rotate(135deg);
+                }
+                38% {
+                    transform: rotate(147deg);
+                }
+                38.5% {
+                    transform: rotate(144deg);
+                }
+                40% {
+                    transform: rotate(144deg);
+                }
+                40.5% {
+                    transform: rotate(156deg);
+                }
+                41% {
+                    transform: rotate(153deg);
+                }
+                42.5% {
+                    transform: rotate(153deg);
+                }
+                43% {
+                    transform: rotate(165deg);
+                }
+                43.5% {
+                    transform: rotate(162deg);
+                }
+                45% {
+                    transform: rotate(162deg);
+                }
+                45.5% {
+                    transform: rotate(174deg);
+                }
+                46% {
+                    transform: rotate(171deg);
+                }
+                47.5% {
+                    transform: rotate(171deg);
+                }
+                48% {
+                    transform: rotate(183deg);
+                }
+                48.5% {
+                    transform: rotate(180deg);
+                }
+                50% {
+                    transform: rotate(180deg);
+                }
+                50.5% {
+                    transform: rotate(192deg);
+                }
+                51% {
+                    transform: rotate(189deg);
+                }
+                52.5% {
+                    transform: rotate(189deg);
+                }
+                53% {
+                    transform: rotate(201deg);
+                }
+                53.5% {
+                    transform: rotate(198deg);
+                }
+                55% {
+                    transform: rotate(198deg);
+                }
+                55.5% {
+                    transform: rotate(210deg);
+                }
+                56% {
+                    transform: rotate(207deg);
+                }
+                57.5% {
+                    transform: rotate(207deg);
+                }
+                58% {
+                    transform: rotate(219deg);
+                }
+                58.5% {
+                    transform: rotate(216deg);
+                }
+                60% {
+                    transform: rotate(216deg);
+                }
+                60.5% {
+                    transform: rotate(228deg);
+                }
+                61% {
+                    transform: rotate(225deg);
+                }
+                62.5% {
+                    transform: rotate(225deg);
+                }
+                63% {
+                    transform: rotate(237deg);
+                }
+                63.5% {
+                    transform: rotate(234deg);
+                }
+                65% {
+                    transform: rotate(234deg);
+                }
+                65.5% {
+                    transform: rotate(246deg);
+                }
+                66% {
+                    transform: rotate(243deg);
+                }
+                67.5% {
+                    transform: rotate(243deg);
+                }
+                68% {
+                    transform: rotate(255deg);
+                }
+                68.5% {
+                    transform: rotate(252deg);
+                }
+                70% {
+                    transform: rotate(252deg);
+                }
+                70.5% {
+                    transform: rotate(264deg);
+                }
+                71% {
+                    transform: rotate(261deg);
+                }
+                72.5% {
+                    transform: rotate(261deg);
+                }
+                73% {
+                    transform: rotate(273deg);
+                }
+                73.5% {
+                    transform: rotate(270deg);
+                }
+                75% {
+                    transform: rotate(270deg);
+                }
+                75.5% {
+                    transform: rotate(282deg);
+                }
+                76% {
+                    transform: rotate(279deg);
+                }
+                77.5% {
+                    transform: rotate(279deg);
+                }
+                78% {
+                    transform: rotate(291deg);
+                }
+                78.5% {
+                    transform: rotate(288deg);
+                }
+                80% {
+                    transform: rotate(288deg);
+                }
+                80.5% {
+                    transform: rotate(300deg);
+                }
+                81% {
+                    transform: rotate(297deg);
+                }
+                82.5% {
+                    transform: rotate(297deg);
+                }
+                83% {
+                    transform: rotate(309deg);
+                }
+                83.5% {
+                    transform: rotate(306deg);
+                }
+                85% {
+                    transform: rotate(306deg);
+                }
+                85.5% {
+                    transform: rotate(318deg);
+                }
+                86% {
+                    transform: rotate(315deg);
+                }
+                87.5% {
+                    transform: rotate(315deg);
+                }
+                88% {
+                    transform: rotate(327deg);
+                }
+                88.5% {
+                    transform: rotate(324deg);
+                }
+                90% {
+                    transform: rotate(324deg);
+                }
+                90.5% {
+                    transform: rotate(336deg);
+                }
+                91% {
+                    transform: rotate(333deg);
+                }
+                92.5% {
+                    transform: rotate(333deg);
+                }
+                93% {
+                    transform: rotate(345deg);
+                }
+                93.5% {
+                    transform: rotate(342deg);
+                }
+                95% {
+                    transform: rotate(342deg);
+                }
+                95.5% {
+                    transform: rotate(354deg);
+                }
+                96% {
+                    transform: rotate(351deg);
+                }
+                97.5% {
+                    transform: rotate(351deg);
+                }
+                98% {
+                    transform: rotate(363deg);
+                }
+                98.5% {
+                    transform: rotate(360deg);
+                }
+                100% {
+                    transform: rotate(360deg);
+                }
+            }
+        </style>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+		<script type="text/javascript" src="http://static.tumblr.com/hax6owt/Vg8o7rhe5/jquery.photoset-grid.js"></script>
+		<script type="text/javascript">
+		    $(document).ready(function(){
+		        $('.photoset-grid').photosetGrid();
+		    });
+		</script>
+		<script type="text/javascript">
+		    $(function(){var a=new Date,b=a.getHours(),c="";b>=22||b<=6?(c="NIGHTTIME",$("#time-gif").attr("src","http://static.tumblr.com/hax6owt/SkFom5ppm/moon.gif")):(c="DAYTIME",$("#time-gif").attr("src","http://static.tumblr.com/hax6owt/Qnwom4bhn/sun.gif")),$("#time").html(c)});
+		</script>
+    </head>
+    <body>
+        <div class="posts">
+            {block:Posts}
+            <div id="{PostID}" class="post {PostType} {TagsAsClasses}">
+                <div id="left"><div id="outer"><div id="inner"><div id="ininner"></div></div></div></div>
+                <div id="right">
+                    <div id="content">
+                        {block:Audio}{block:AudioPlayer}<div class="music-box"><div class="audio-title">{block:TrackName}<div id="blur"{block:AlbumArt} style="background-image: url('{AlbumArtURL}');"{/block:AlbumArt}><b>{TrackName}</b>{block:Artist}<br /><i>{Artist}</i>{/block:Artist}</div><div id="title"><b>{TrackName}</b>{block:Artist}<br /><i>{Artist}</i>{/block:Artist}</div>{/block:TrackName}</div>
+		                <div id="media-player">
+		                    {block:AlbumArt}<img id="album-art" src="{AlbumArtURL}" /><div id="blur" style="background-image: url('{AlbumArtURL}');"></div>{/block:AlbumArt}
+		                    {AudioPlayer}
+		                </div></div>{/block:AudioPlayer}
+		                {block:AudioEmbed}
+		                <div id="media">
+		                    {AudioEmbed}
+		                </div>
+		                {/block:AudioEmbed}
+		                {block:IfShowPostCaption}{block:Caption}<div id="desc">{Caption}</div>{/block:Caption}{/block:IfShowPostCaption}{/block:Audio}
+                        {block:Text}{block:Title}<strong>{Title}</strong>{/block:Title}{Body}{/block:Text}
+                        {block:Chat}{block:Title}<strong>{Title}</strong>{/block:Title}{block:Lines}<p>{block:Label}<strong>{Label} </strong>{/block:Label}{Line}</p>{/block:Lines}{/block:Chat}
+                        {block:Link}<a href="{URL}" {Target}><strong>{Name}</strong></a>{block:Description}{Description}{/block:Description}{/block:Link}
+                        {block:Quote}<strong>"{Quote}"</strong>{block:Source}<p>~{Source}</p>{/block:Source}{/block:Quote}
+                        {block:Photo}<img src="{PhotoURL-500}" />{block:Caption}{Caption}{/block:Caption}{/block:Photo}
+                        {block:Photoset}<div class="photoset-grid" data-layout="{PhotosetLayout}" data-id="photoset{PostID}" id="photoset">
+		                {block:Photos}
+		                {LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}" />{LinkCloseTag}
+		                {/block:Photos}
+		            </div>{block:Caption}{Caption}{/block:Caption}{/block:Photoset}
+                    </div>
+                    {block:HasTags}<div id="tags">{block:Tags}<a id="tag-button" href="{TagURL}">{Tag}</a>{/block:Tags}</div>{/block:HasTags}
+                    {block:Date}<div id="bottom-bit"><span id="date-button">{12Hour}:{Minutes} {AmPm}</span>{block:NoteCount}<a id="notes-button" href="{Permalink}">{NoteCountWithLabel}</a>{/block:NoteCount}<span class="like"><svg width="16" height="16" viewBox="0 0 19 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000"><path d="M14.0425097,0.000920262799 C16.1435097,-0.0400797372 18.8835097,1.28192026 18.9635097,5.36992026 C19.0525097,9.95492026 15.1985097,13.3079203 9.48350967,16.2089203 C3.76650967,13.3079203 -0.0874903349,9.95492026 0.00150966509,5.36992026 C0.0815096651,1.28192026 2.82150967,-0.0400797372 4.92250967,0.000920262799 C7.02450967,0.0419202628 8.87050967,2.26592026 9.46950967,2.92792026 C10.0945097,2.26592026 11.9405097,0.0419202628 14.0425097,0.000920262799 Z"></path></svg>{LikeButton color="white" size="16"}</span>{ReblogButton color="black" size="16"}</div>{/block:Date}
+                </div>
+            </div>
+            {/block:Posts}
+            {block:Pagination}
+		    <div class="pagination">
+		        {block:PreviousPage}<a class="pcell" href="{PreviousPage}">&lt;</a>{/block:PreviousPage}
+		        {block:JumpPagination length="5"}
+		        {block:CurrentPage}<a class="pcell" id="currentPage">{PageNumber}</a>{/block:CurrentPage}
+		        {block:JumpPage}<a class="pcell" href="{URL}">{PageNumber}</a>{/block:JumpPage}
+		        {/block:JumpPagination}
+		        {block:NextPage}<a class="pcell" href="{NextPage}">&gt;</a>{/block:NextPage}
+		    </div>
+		    {/block:Pagination}
+        </div>
+        <div class="overlay">
+            <div id="triangle"></div>
+            <svg id="guitar" width="100mm" height="270mm" version="1.1" viewBox="0 0 100 270" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                <metadata>
+                    <rdf:RDF>
+                        <cc:Work rdf:about="">
+                            <dc:format>image/svg+xml</dc:format>
+                            <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+                            <dc:title/>
+                        </cc:Work>
+                    </rdf:RDF>
+                </metadata>
+                <g transform="translate(0,-27)">
+                    <path d="m50.143 36.65-4.8166 2.823c-4.2155 2.4705-4.8544 3.2783-5.1236 6.4771-0.26342 3.1295-0.6554 3.6548-2.726 3.6548-1.9002 0-2.4182 0.51605-2.4182 2.4091 0 1.6604 0.62846 2.5077 2.0218 2.726 1.1119 0.1742 2.0037 0.65129 1.9821 1.0602-0.02158 0.40888-0.03902 2.9737-0.03902 5.6995 0 4.2953-0.26398 4.9564-1.9821 4.9564-2.8332 0-2.8302 5.4939 0.0044 6.235 1.3801 0.3609 1.7909 1.0307 1.3443 2.1944-0.42825 1.116 0.21745 2.3875 1.9355 3.8091l2.5786 2.1341-1.4375 44.109c-0.79081 24.26-1.6165 44.58-1.8347 45.155s-2.2779 1.6664-4.5767 2.4251c-5.7898 1.9108-13.344 8.9554-15.413 14.373-1.2478 3.2673-1.5172 5.8875-1.0403 10.132 1.872 16.66 1.8396 21.465-0.1856 27.203-1.0905 3.0899-3.3309 7.5775-4.9785 9.9723-13.787 20.039-2.2159 44.45 24.595 51.885 5.9836 1.6594 17.203 1.693 23.298 0.0695 8.5705-2.2826 14.184-5.308 19.928-10.74 13.222-12.505 14.676-26.58 4.3896-42.495-6.1499-9.5151-6.8297-15.039-4.4156-35.895 0.49462-4.2733 0.23585-6.8424-1.0204-10.132-2.0438-5.3518-9.6035-12.456-15.23-14.313l-3.9963-1.3191-0.553-8.0444c-0.47264-6.8769-2.5969-73.516-2.5817-80.988 3e-3 -1.8018 0.77609-2.9178 2.5916-3.745 1.9353-0.88181 2.4501-1.6979 2.0462-3.2424-0.38707-1.4802 3e-3 -2.2059 1.3787-2.5656 2.7746-0.72558 2.718-6.2174-0.06415-6.2174-1.7181 0-1.9821-0.66108-1.9821-4.9564 0-2.7259-0.11189-5.2907-0.24824-5.6995-0.13628-0.40888 0.75622-0.88596 1.9828-1.0602 3.3384-0.47413 3.1679-5.1351-0.18791-5.1351-2.0639 0-2.4635-0.52838-2.726-3.6059-0.2721-3.1893-0.89612-3.9372-5.4032-6.4771zm0.54001 164.05c4.3374-0.11558 8.7966 2.566 10.056 7.1256 1.4161 5.1288-0.72084 9.8953-5.2924 11.805-4.1572 1.737-4.1883 1.7373-8.1705 4e-3 -6.7506-2.9364-8.1499-11.001-2.8314-16.32 1.7277-1.7277 3.9668-2.5555 6.2388-2.616z" fill="#333333" style="paint-order:stroke fill markers"/>
+                </g>
+            </svg>
+            <div id="left">
+                <div id="blog-title">{Title}</div>
+                <div id="outer"><div id="inner"><div id="ininner"></div></div></div>
+            </div>
+            <div id="right">
+                <div class="dangly-bits">
+                    <div id="chapter">CHAPTER &nbsp;<span id="page">{CurrentPage}</span></div>
+                    <div id="time">TIME</div>
+                    <div id="level">LEVEL</div>
+                </div>
+                <svg id="ani-border" width="150mm" height="150mm" version="1.1" viewBox="0 0 150 150" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+                    <metadata>
+                        <rdf:RDF>
+                            <cc:Work rdf:about="">
+                                <dc:format>image/svg+xml</dc:format>
+                                <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+                                <dc:title/>
+                            </cc:Work>
+                        </rdf:RDF>
+                    </metadata>
+                    <g transform="translate(0,-147)">
+                        <path d="m22.678 186.2c-1.1512-0.60789-2.2556-1.3681-2.4542-1.6894-0.98935-1.6004 10.663-13.678 17.611-18.253 5.4373-3.5809 9.8196-5.702 16.172-7.828 4.3861-1.4678 14.161-3.383 17.507-3.4302 0.54434-8e-3 0.69285 0.91759 0.56797 3.5386l-0.1691 3.549-3.6918 0.40334c-14.843 1.6216-29.342 9.3558-38.814 20.704-1.9107 2.289-3.7352 4.1506-4.0546 4.1368-0.31934-0.0145-1.5225-0.52247-2.6737-1.1304zm98.267-2.6774c-9.5824-11.441-22.593-18.634-37.673-20.827l-4.5438-0.6608-0.1745-3.0362c-0.096-1.6699 0.0348-3.2454 0.29046-3.5011 0.79086-0.79067 11.558 1.037 17.222 2.9234 10.294 3.4284 19.25 9.0378 26.803 16.787 4.2155 4.3252 7.2203 8.1048 7.2446 9.1128 0.0129 0.53872-4.4507 3.603-5.2484 3.603-0.1288 0-1.8928-1.9803-3.9201-4.4008zm11.453 65.946c-1.4042-0.79731-2.6504-1.5468-2.7693-1.6656-0.11897-0.11879 0.33004-1.5667 0.9977-3.2175 6.1414-15.185 5.8351-32.417-0.83423-46.932-1.0568-2.3001-1.7794-4.4119-1.6058-4.6928 0.38387-0.62098 4.508-2.7659 5.3182-2.7659 0.82653 0 3.0124 4.5462 5.0509 10.505 4.6537 13.603 4.5882 29.335-0.17943 43.075-2.5538 7.36-2.737 7.5346-5.978 5.6943zm-119.58-2.5633c-6.9089-18.076-6.3814-36.094 1.5647-53.446 0.96538-2.1081 1.9914-3.8329 2.28-3.8329 0.80656 0 5.5548 2.8901 5.5548 3.381 0 0.23864-0.86774 2.3225-1.9283 4.6307-4.2532 9.2567-6.072 20.332-4.9555 30.176 0.68846 6.0693 2.2355 12.391 4.0916 16.721 0.59855 1.396 1.0883 2.7694 1.0883 3.0519 0 0.66751-4.2772 3.3671-5.3348 3.3671-0.48536 0-1.4378-1.6331-2.3607-4.048zm65.861 41.311c-0.16507-0.43007-0.22095-2.0271-0.12413-3.549l0.17596-2.767 3.4078-0.4116c17.522-2.1164 33.669-12.18 43.532-27.132l0.93391-1.4158 2.6623 1.4196c1.4643 0.78078 2.7972 1.6322 2.9622 1.8921 0.49795 0.78448-3.8035 6.6079-8.6283 11.681-10.599 11.145-23.619 18.003-38.39 20.221-6.7736 1.0171-6.1673 1.0114-6.5316 0.062zm-14.643-0.13279c-8.8423-1.3785-18.164-5.0624-26.199-10.354-7.1644-4.7182-19.595-17.87-19.595-20.732 0-0.52454 1.1851-1.5151 2.7786-2.3224l2.7786-1.4077 1.4206 2.1462c9.383 14.175 25.943 24.22 43.004 26.084l3.6918 0.40334 0.1691 3.549 0.16909 3.549-1.589-0.0645c-0.87396-0.0356-3.8569-0.41807-6.6288-0.8502z" stroke-width=".56791"/>
+                    </g>
+                </svg>
+                <div id="daytime-circle"><img src="http://static.tumblr.com/hax6owt/Qnwom4bhn/sun.gif" id="time-gif" /></div>
+            </div>
+        </div>
+    </body>
+</html>
